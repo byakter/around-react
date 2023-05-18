@@ -11,6 +11,8 @@
 }
 
 .profile__image {
+  background-repeat: no-repeat;
+    background-size: cover;
   width: 120px;
   height: 120px;
   margin-right: 30px;
