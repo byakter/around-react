@@ -3,14 +3,13 @@
 // import plus from '../images/Plus-vector.svg';
 // // import { useState } from 'react';
 
-
 // const Main = ({onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onClose}) => {
 //   //  const[userName, setuserName] = useState()
 //   //  const[userDescription, setuserDescription]= useState()
 //   //  const[userAvatar, setuserAvatar]= useState()
 //   return (
 //     <main>
-    
+
 //       <section className='profile'>
 //         <div className='profile__container'>
 //           <img className='profile__image' src={userImage} alt='userphoto' />
@@ -31,7 +30,7 @@
 //             <h1 className='profile__title'>Jacques cousteau</h1>
 //             <button className='profile__edit-button' type='button' onClick={onEditProfileClick}>
 //               <img
-                
+
 //                 src={edit}
 //                 alt='edit-button'
 //                 className='profile__edit-button-vector'
@@ -42,7 +41,7 @@
 //         </div>
 //         <button className='profile__button' type='button' onClick = {onAddPlaceClick}>
 //           <img
-            
+
 //             src={plus}
 //             alt='plus-emoji'
 //             className='profile__vector'
@@ -190,43 +189,49 @@
 
 // export default Main;
 
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // import userAvatar from '../images/jacques-cousteau.jpg';
-import edit from '../images/edit-button.svg';
-import plus from '../images/Plus-vector.svg';
-import { api } from '../utils/api'; 
+import edit from "../images/edit-button.svg";
+import plus from "../images/Plus-vector.svg";
+import { api } from "../utils/api";
+import Card from './Card';
 
-const Main = ({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onClose }) => {
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
-  const[cards, setCards] = useState([]);
+const Main = ({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onClose,
+}) => {
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo()
+    api
+      .getUserInfo()
       .then((userInfo) => {
         setUserName(userInfo.name);
         setUserDescription(userInfo.about);
         setUserAvatar(userInfo.avatar);
       })
       .catch((error) => {
-        console.log('Error fetching user data:', error);
+        console.log("Error fetching user data:", error);
       });
 
-      api.getInitialCards()
+    api
+      .getInitialCards()
       .then((items) => {
-        setCards(items.cards);
-      }).catch((error) => {
-        console.log('Error fetching user data:', error);
+        setCards(items);
+      })
+      .catch((error) => {
+        console.log("Error fetching user data:", error);
       });
-
-    }, []);
-
+  }, []);
 
   //   Promise.all([api.getUserInfo(), api.getInitialCards()])
   // .then(([userInfo, cards]) => {
-   
+
   //   setUserName(userInfo.name)
   //   setUserDescription(userInfo.about);
   //   setUserAvatar(userInfo.avatar);
@@ -238,37 +243,55 @@ const Main = ({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onClose 
   // .catch((err) => {
   //   console.error(err);
   // });
-  // 
-
-  
+  //
 
   return (
     <main>
-      <section className='profile'>
-        <div className='profile__container'>
+      <section className="profile">
+        <div className="profile__container">
           <div
-            className='profile__image'
+            className="profile__image"
             style={{ backgroundImage: `url(${userAvatar})` }}
-            alt='userphoto'
+            alt="userphoto"
           ></div>
-          <button className='profile__image-button' type='button' onClick={onEditAvatarClick}>
-            <img src={edit} alt='edit-button' className='profile__image-button-vector' />
+          <button
+            className="profile__image-button"
+            type="button"
+            onClick={onEditAvatarClick}
+          >
+            <img
+              src={edit}
+              alt="edit-button"
+              className="profile__image-button-vector"
+            />
           </button>
         </div>
-        <div className='profile__description'>
-          <div className='profile__caption'>
-            <h1 className='profile__title'>{userName}</h1>
-            <button className='profile__edit-button' type='button' onClick={onEditProfileClick}>
-              <img src={edit} alt='edit-button' className='profile__edit-button-vector' />
+        <div className="profile__description">
+          <div className="profile__caption">
+            <h1 className="profile__title">{userName}</h1>
+            <button
+              className="profile__edit-button"
+              type="button"
+              onClick={onEditProfileClick}
+            >
+              <img
+                src={edit}
+                alt="edit-button"
+                className="profile__edit-button-vector"
+              />
             </button>
           </div>
-          <p className='profile__subtitle'>{userDescription}</p>
+          <p className="profile__subtitle">{userDescription}</p>
         </div>
-        <button className='profile__button' type='button' onClick={onAddPlaceClick}>
-          <img src={plus} alt='plus-emoji' className='profile__vector' />
+        <button
+          className="profile__button"
+          type="button"
+          onClick={onAddPlaceClick}
+        >
+          <img src={plus} alt="plus-emoji" className="profile__vector" />
         </button>
       </section>
-      <div className='popup popup_type_profile'>
+      {/* <div className='popup popup_type_profile'>
 //         <div className='popup__content'>
 //           <button type='button' className='popup__close'></button>
 //           <h3 className='popup__title'>Edit Profile</h3>
@@ -400,10 +423,32 @@ const Main = ({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, onClose 
           <img className='popup__preview-image' src='#' alt='' />
           <p className='popup__preview-title'></p>
         </div>
-      </div>
-
-      <section className='cards'></section>
-      
+      </div> */}
+{
+//     "likes": [],
+//     "_id": "645fafb42b4be80642da2add",
+//     "name": "asd",
+//     "link": "https://preview.redd.it/8d1xfnblp9ka1.jpg?width=640&crop=smart&auto=webp&v=enabled&s=51848a53056386c12bc01e5309744efc5ea267a6",
+//     "owner": {
+//         "name": "Alon Sachs5",
+//         "about": "FullStack developer7",
+//         "avatar": "https://claimflights.com/wp-content/uploads/Krabi-Thailand-1024x640.jpg",
+//         "_id": "c88564917fa3d45d6ff82624",
+//         "cohort": "cohort-3-en"
+//     },
+//     "createdAt": "2023-05-13T15:41:40.454Z"
+ }
+      <section className="cards">
+        {cards.map((card) => {
+          return (
+          
+          <Card card={card} key={card._id} />
+         
+          )
+          
+         
+        })}
+      </section>
     </main>
   );
 };

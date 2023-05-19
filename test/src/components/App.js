@@ -50,7 +50,7 @@ function App() {
       handelClose();
     }
   };
-  console.log('abcde', api._baseUrl);
+ 
   return (
     <div className='App' onKeyDown={handelEscape}>
       <div className='page'>
