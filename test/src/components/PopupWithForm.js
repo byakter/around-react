@@ -8,6 +8,9 @@ const PopupWithForm = (props) => {
     props.handelSubmit(data).then(res => {
       console.log(res);
       props.onClose();
+      if(props.postSubmit){
+        props.postSubmit();
+      }
     }).catch(err =>{
       alert('an unknown error has occurred, please try again later');
       console.log('error', err);
@@ -37,7 +40,7 @@ const PopupWithForm = (props) => {
             onSubmit={handelSubmit}
           >
             {props.children}
-            <button type='submit' className='popup__submit-button' id='save-button'>Save</button>
+
           </form>
         </div>
       </div>

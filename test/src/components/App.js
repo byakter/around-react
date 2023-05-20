@@ -1,18 +1,28 @@
 import Header from './Header';
 import Main from './Main';
+// import Card from './Card';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 import { api } from '../utils/api';
 
+
+
+
+
+
+
 function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = useState(false);
-  // const [isPreviewCardProfilePopupOpen, setPreviewCardProfilePopupOpen] =
-  //   useState(false);
+  const [selectedCard , setSelectedCard ] =useState(null);
+  const [updatedCards , setUpdateCards ] =useState(false);
+  const [updatedAvatar , setUpdateAvatar ] =useState(false);
+
+
   
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(true);
@@ -29,20 +39,22 @@ function App() {
   const handleConfirmDeleteClick = () => {
     setConfirmDeletePopupOpen(true);
   };
-
-  // const handlePreviewCardProfileClick = () => {
-  //   setPreviewCardProfilePopupOpen(true);
-  // };
-
+  
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  };
   
 
   const handelClose = (e) => {
     if (e && e.target !== e.currentTarget){
+      
       return 
     }
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setConfirmDeletePopupOpen(false);
+    setSelectedCard(null);
   };
 
   const handelEscape = (e) => {
@@ -61,13 +73,21 @@ function App() {
             onAddPlaceClick={handleAddPlaceClick}
             onEditAvatarClick={handleEditAvatarClick}
             onConfirmDeleteClick={handleConfirmDeleteClick}
+            onCardClick={handleCardClick}
             onClose={handelClose}
+            updatedCards={updatedCards}
+            setUpdateCards={setUpdateCards}
+            updatedAvatar={updatedAvatar}
+            setUpdateAvatar={setUpdateAvatar}
           />
+          <ImagePopup selectedCard={selectedCard} onClose={handelClose} handelEscape={handelEscape} />
           <PopupWithForm
             name='avatar'
             title='Change profile picture'
             openPopup={isEditAvatarPopupOpen ? 'popup_opened' : ''}
             onClose={handelClose}
+            handelSubmit={api.changeProfileImage.bind(api)}
+            postSubmit={()=>setUpdateAvatar(true)}
           >
             <input
               className='popup__input popup__input_type_link'
@@ -78,6 +98,7 @@ function App() {
               required
             />
             <span id='image-link-avatar-error' className='popup__span'></span>
+            <button type='submit' className='popup__submit-button' id='save-button'>Save</button>
           </PopupWithForm>
 
           <PopupWithForm
@@ -85,6 +106,8 @@ function App() {
             title='New place'
             openPopup={isAddPlacePopupOpen ? 'popup_opened' : ''}
             onClose={handelClose}
+            handelSubmit={api.createCard.bind(api)}
+            postSubmit={()=>setUpdateCards(true)}
           >
             <input
               className='popup__input popup__input_type_title'
@@ -106,6 +129,7 @@ function App() {
               required
             />
             <span id='image-link-error' className='popup__span'></span>
+            <button type='submit' className='popup__submit-button' id='save-button'>Create</button>
           </PopupWithForm>
           <PopupWithForm
             name='profile'
@@ -137,6 +161,7 @@ function App() {
               maxLength='200'
             />
             <span id='about-input-error' className='popup__span'></span>
+            <button type='submit' className='popup__submit-button' id='save-button'>Save</button>
           </PopupWithForm>
           <PopupWithForm
             name='delete-card'
@@ -151,6 +176,7 @@ function App() {
               Yes
             </button>
           </PopupWithForm>
+          {/* <Card onConfirmDeleteClick={handleConfirmDeleteClick}/> */}
 
           <Footer />
           <ImagePopup />
