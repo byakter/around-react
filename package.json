@@ -1,26 +1,26 @@
-// {
-//   "name": "around-react",
-//   "version": "1.0.0",
-//   "description": "",
-//   "main": "index.js",
-//   "directories": {
-//     "test": "test"
-//   },
-//   "scripts": {
-//     "test": "echo \"Error: no test specified\" && exit 1"
-//   },
-//   "repository": {
-//     "type": "git",
-//     "url": "git+https://github.com/byakter/around-react.git"
-//   },
-//   "keywords": [],
-//   "author": "",
-//   "license": "ISC",
-//   "bugs": {
-//     "url": "https://github.com/byakter/around-react/issues"
-//   },
-//   "homepage": "https://github.com/byakter/around-react#readme",
-//   "devDependencies": {
-//     "gh-pages": "^5.0.0"
-//   }
-// }
+{
+  "name": "around-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byakter/around-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byakter/around-react/issues"
+  },
+  "homepage": "https://github.com/byakter/around-react#readme",
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}
