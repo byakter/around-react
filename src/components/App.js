@@ -1,6 +1,5 @@
 import Header from './Header';
 import Main from './Main';
-// import Card from './Card';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import { useState } from 'react';
