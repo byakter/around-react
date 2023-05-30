@@ -42,35 +42,35 @@ const Main = ({
       });
   }, []);
 
-  useEffect( () =>{
-    if(updatedCards === true){
-      api
-      .getInitialCards()
-      .then((items) => {
-        setCards(items);
-        setUpdateCards(false)
-      })
-      .catch((error) => {
-        console.log("Error fetching user data:", error);
-      });      
-    }
-  }, [updatedCards])
+  // useEffect( () =>{
+  //   if(updatedCards === true){
+  //     api
+  //     .getInitialCards()
+  //     .then((items) => {
+  //       setCards(items);
+  //       setUpdateCards(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error fetching user data:", error);
+  //     });      
+  //   }
+  // }, [])
 
-  useEffect( () =>{
-    if(updatedAvatar === true){
-      api
-      .getUserInfo()
-      .then((userInfo) => {
-        setUserName(userInfo.name);
-        setUserDescription(userInfo.about);
-        setUserAvatar(userInfo.avatar);
-        setUpdateAvatar(false)
-      })
-      .catch((error) => {
-        console.log("Error fetching user data:", error);
-      });
-    }
-  }, [updatedAvatar])
+  // useEffect( () =>{
+  //   if(updatedAvatar === true){
+  //     api
+  //     .getUserInfo()
+  //     .then((userInfo) => {
+  //       setUserName(userInfo.name);
+  //       setUserDescription(userInfo.about);
+  //       setUserAvatar(userInfo.avatar);
+  //       setUpdateAvatar(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error fetching user data:", error);
+  //     });
+  //   }
+  // }, [])
 
   return (
     <main>
