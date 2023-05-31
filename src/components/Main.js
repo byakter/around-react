@@ -13,7 +13,7 @@ const Main = ({
   updatedCards,
   setUpdateCards,
   updatedAvatar,
-  setUpdateAvatar
+  setUpdateAvatar,
 }) => {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -52,7 +52,7 @@ const Main = ({
   //     })
   //     .catch((error) => {
   //       console.log("Error fetching user data:", error);
-  //     });      
+  //     });
   //   }
   // }, [])
 
@@ -79,7 +79,7 @@ const Main = ({
           <div
             className="profile__image"
             style={{ backgroundImage: `url(${userAvatar})` }}
-            alt="userphoto"
+            // alt="userphoto"
           ></div>
           <button
             className="profile__image-button"
@@ -267,7 +267,14 @@ const Main = ({
       }
       <section className="cards">
         {cards.map((card) => {
-          return <Card card={card} key={card._id} onCardClick={onCardClick} onConfirmDeleteClick={onConfirmDeleteClick}/>;
+          return (
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onConfirmDeleteClick={onConfirmDeleteClick}
+            />
+          );
         })}
       </section>
     </main>
