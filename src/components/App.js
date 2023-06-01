@@ -89,6 +89,7 @@ function App() {
             openPopup={isEditAvatarPopupOpen ? "popup_opened" : ""}
             onClose={handelClose}
             handelSubmit={api.changeProfileImage.bind(api)}
+            buttonText="Save"
             // postSubmit={() => setUpdateAvatar(true)}
           >
             <input
@@ -100,13 +101,6 @@ function App() {
               required
             />
             <span id="image-link-avatar-error" className="popup__span"></span>
-            <button
-              type="submit"
-              className="popup__submit-button"
-              id="save-button"
-            >
-              Save
-            </button>
           </PopupWithForm>
 
           <PopupWithForm
@@ -115,6 +109,7 @@ function App() {
             openPopup={isAddPlacePopupOpen ? "popup_opened" : ""}
             onClose={handelClose}
             handelSubmit={api.createCard.bind(api)}
+            buttonText="Create"
             // postSubmit={() => setUpdateCards(true)}
           >
             <input
@@ -136,14 +131,14 @@ function App() {
               name="link"
               required
             />
-            <span id="image-link-error" className="popup__span"></span>
-            <button
+            <span id={"props.image-link-error"} className="popup__span"></span>
+            {/* <button
               type="submit"
               className="popup__submit-button"
               id="save-button"
             >
-              Create
-            </button>
+              
+            </button> */}
           </PopupWithForm>
           <PopupWithForm
             name="profile"
@@ -151,6 +146,7 @@ function App() {
             openPopup={isEditProfilePopupOpen ? "popup_opened" : ""}
             onClose={handelClose}
             handelSubmit={api.setUserInfo.bind(api)}
+            buttonText="Save"
           >
             <input
               id="name-input"
@@ -175,13 +171,13 @@ function App() {
               maxLength="200"
             />
             <span id="about-input-error" className="popup__span"></span>
-            <button
+            {/* <button
               type="submit"
               className="popup__submit-button"
               id="save-button"
             >
               Save
-            </button>
+            </button> */}
           </PopupWithForm>
           <PopupWithForm
             name="delete-card"

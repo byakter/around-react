@@ -48,6 +48,13 @@ const PopupWithForm = (props) => {
           onSubmit={handelSubmit}
         >
           {props.children}
+
+          <button
+            type="submit"
+            className="popup__submit-button popup__submit-button_delete-card"
+          >
+            {props.buttonText}
+          </button>
         </form>
       </div>
     </div>
