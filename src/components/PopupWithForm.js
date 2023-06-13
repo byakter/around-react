@@ -1,34 +1,4 @@
 const PopupWithForm = (props) => {
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    const data = getInputValues(e.target);
-    props
-      .handelSubmit(data)
-      .then((res) => {
-        console.log(res);
-        props.onClose();
-        if (props.postSubmit) {
-          props.postSubmit();
-        }
-      })
-      .catch((err) => {
-        alert("an unknown error has occurred, please try again later");
-        console.log("error", err);
-      })
-      .finally(() => {
-        props.onClose();
-      });
-  };
-  const getInputValues = (form) => {
-    const inputValues = {};
-    const inputs = [...form.querySelectorAll(".popup__input")];
-
-    inputs.forEach((input) => {
-      inputValues[input.name] = input.value;
-    });
-
-    return inputValues;
-  };
 
   return (
     <div
@@ -45,14 +15,11 @@ const PopupWithForm = (props) => {
         <form
           className={`popup__form popup__form_type_${props.name}`}
           name="profile-form"
-          onSubmit={handelSubmit}
+          onSubmit={props.handelSubmit}
         >
           {props.children}
 
-          <button
-            type="submit"
-            className="popup__submit-button popup__submit-button_delete-card"
-          >
+          <button type="submit" className="popup__submit-button">
             {props.buttonText}
           </button>
         </form>

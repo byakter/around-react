@@ -28,11 +28,11 @@
   line-height: 29px;
   margin: 34px 64px 54px 36px;
 }
- .popup__form {
+.popup__form {
   padding-left: 36px;
   padding-right: 36px;
   padding-bottom: 36.51px;
- }
+}
 
 .popup__input {
   width: 358px;
@@ -72,10 +72,6 @@
   cursor: pointer;
 }
 
-.popup__submit-button_delete-card {
-  margin-top: 0;
-}
-
 .popup__close {
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
@@ -85,7 +81,7 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
-  background-image: url('../images/Close-Icon.svg');
+  background-image: url("../images/Close-Icon.svg");
   background-repeat: no-repeat;
   padding: 0;
 }
@@ -134,7 +130,6 @@
 }
 
 .popup__span {
-  
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
