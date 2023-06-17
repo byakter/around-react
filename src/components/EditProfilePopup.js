@@ -14,7 +14,7 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
       setName(currentUser.user.name);
       setAbout(currentUser.user.about);
     }
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -25,19 +25,12 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser }) => {
         about: about,
       });
     }, [500]);
-
-    onUpdateUser({
-      name,
-      about,
-    });
   }
   useEffect(() => {
     if (isOpen === false) {
       window.setTimeout(() => {
         // after fade effect finished and tyhe popup is hidden
         setButtonValue("Save");
-        setName("");
-        setAbout("");
       }, [500]);
     }
   }, [isOpen]);

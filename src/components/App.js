@@ -17,7 +17,7 @@ function App() {
   const [isConfirmDeletePopupOpen, setConfirmDeletePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [deleteCard, setDeleteCard] = useState(null);
-  const [currentUser, setCurrrentUser] = useState("");
+  const [currentUser, setCurrrentUser] = useState({});
   const [cards, setCards] = useState([]);
 
   const handleEditAvatarClick = () => {
@@ -83,17 +83,22 @@ function App() {
   }, []);
 
   const handleUpdateUser = (user) => {
-    api.setUserInfo(user).then((updateUser) => {
-      setCurrrentUser(updateUser);
-      closeAllPopups();
-    });
+    api
+      .setUserInfo(user)
+      .then((updateUser) => {
+        setCurrrentUser(updateUser);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log("Error updating user data:", error);
+      });
   };
 
   const handleUpdateAvatar = (avatarData) => {
     api
       .changeProfileImage(avatarData)
       .then((updatedUser) => {
-        setCurrrentUser(updatedUser);
+        setCurrrentUser({updatedUser});
         closeAllPopups();
       })
       .catch((error) => {

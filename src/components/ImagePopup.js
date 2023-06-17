@@ -18,7 +18,7 @@ const ImagePopup = ({ selectedCard, onClose, handelEscape }) => {
             <img
               className="popup__preview-image"
               src={selectedCard.link}
-              alt="selected tile"
+              alt={selectedCard.name}
             />
             <p className="popup__preview-title">{selectedCard.name}</p>
           </>
