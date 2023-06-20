@@ -98,7 +98,7 @@ function App() {
     api
       .changeProfileImage(avatarData)
       .then((updatedUser) => {
-        setCurrrentUser({updatedUser});
+        setCurrrentUser({ updatedUser });
         closeAllPopups();
       })
       .catch((error) => {
