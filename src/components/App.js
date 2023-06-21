@@ -108,21 +108,31 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
     if (!isLiked)
-      api.addLike(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      });
+      api
+        .addLike(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((currentCard) =>
+              currentCard._id === card._id ? newCard : currentCard
+            )
+          );
+        })
+        .catch((error) => {
+          console.log("Error add like:", error);
+        });
     else
-      api.deleteLike(card._id).then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      });
+      api
+        .deleteLike(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((currentCard) =>
+              currentCard._id === card._id ? newCard : currentCard
+            )
+          );
+        })
+        .catch((error) => {
+          console.log("Error delete like:", error);
+        });
   }
 
   function handleConfirm(card) {
@@ -136,6 +146,8 @@ function App() {
         state.filter((currentCard) => currentCard._id !== deleteCard._id)
       );
       setDeleteCard(null);
+    }).catch((error) => {
+      console.log("Error delere card:", error);
     });
   }
 
@@ -143,6 +155,8 @@ function App() {
     api.createCard(newCard).then((savedCard) => {
       setCards([savedCard, ...cards]);
       closeAllPopups();
+    }).catch((error) => {
+      console.log("Error cerate card:", error);
     });
   }
 
