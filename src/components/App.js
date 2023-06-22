@@ -98,7 +98,7 @@ function App() {
     api
       .changeProfileImage(avatarData)
       .then((updatedUser) => {
-        setCurrrentUser({ updatedUser });
+        setCurrrentUser(updatedUser);
         closeAllPopups();
       })
       .catch((error) => {
@@ -141,23 +141,29 @@ function App() {
   }
 
   function handleCardDelete() {
-    api.deleteCard(deleteCard._id).then(() => {
-      setCards((state) =>
-        state.filter((currentCard) => currentCard._id !== deleteCard._id)
-      );
-      setDeleteCard(null);
-    }).catch((error) => {
-      console.log("Error delere card:", error);
-    });
+    api
+      .deleteCard(deleteCard._id)
+      .then(() => {
+        setCards((state) =>
+          state.filter((currentCard) => currentCard._id !== deleteCard._id)
+        );
+        setDeleteCard(null);
+      })
+      .catch((error) => {
+        console.log("Error delere card:", error);
+      });
   }
 
   function handleAddPlaceSubmit(newCard) {
-    api.createCard(newCard).then((savedCard) => {
-      setCards([savedCard, ...cards]);
-      closeAllPopups();
-    }).catch((error) => {
-      console.log("Error cerate card:", error);
-    });
+    api
+      .createCard(newCard)
+      .then((savedCard) => {
+        setCards([savedCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log("Error cerate card:", error);
+      });
   }
 
   return (
